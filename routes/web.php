@@ -39,12 +39,13 @@ $router->get('/post/{id}', 'PostsController@show');
 $router->put('/post/{id}', 'PostsController@update');
 $router->delete('/post/{id}', 'PostsController@destroy');
 
-//Library
-$router->get('/users', 'UsersController@index');
-$router->post('/users', 'UsersController@store');
-$router->get('/users/{id}', 'UsersController@show');
-$router->put('/users/{id}', 'UsersController@update');
-$router->delete('/users/{id}', 'UsersController@delete');
+//Users
+$router->group(['prefix' => 'auth'], function () use ($router) {
+    $router->post('/register', 'AuthController@register');
+});
+
+
+//
 
 /*Tugas 4 
 $router->get('User', 'UserController@index');
